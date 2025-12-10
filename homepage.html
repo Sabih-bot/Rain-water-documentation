@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RainIrrigation - Sustainable Water Solutions</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap'); 
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+
+        /* Navigation */
+        .navbar {
+            padding: 0.8rem 5%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95) !important;
+            font-family: 'Playfair Display', serif;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: none;
+            height: 60px;
+        }
+        
+        /* Progress bar removed */
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #000 !important;
+            font-weight: 700;
+            margin-left: 300px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo-icon {
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon i {
+            color: transparent;
+            font-size: 1.5rem;
+            display: block;
+            -webkit-text-stroke: 1.5px #4a90e2;
+            text-shadow: none;
+            padding: 2px;
+            position: relative;
+            animation: droplet 2s ease-in-out infinite;
+        }
+
+        .logo-accent {
+            color: #2196f3;
+        }
+
+        .navbar-nav .nav-link {
+            color: #000 !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            margin: 0 0.2rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .navbar-nav .nav-link:hover{
+            background: black;
+            color: white !important;
+            transition: all 1s ease;
+        }
+        .navbar-nav .nav-link:active {
+            background: #000 !important;
+            color: #fff !important;
+            transition: all 5s ease;
+        }
+        .navbar-toggler {
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+            outline: none;
+        }
+        /* navbar lower rectangle (shown after scroll) */
+        .navbar::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 100%;
+            margin-left: 10px;
+            height: 7px; /* thickness of the bar */
+            background: #000;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: opacity 1.25s ease, transform 0.25s ease;
+        }
+
+        .navbar.navbar-show-bar::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Hero Section */
+        .hero {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+                        url('../assets/hero-rainwater.jpg') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 0px 0px 270px;
+            min-height: calc(100vh - 60px);
+            width: 100%;
+            margin: 60px 0 0 0;
+            color: white;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        @media (min-width: 2000px) {
+            .hero {
+                background-size: 100% 100%;
+            }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+
+        /* Hero main title animation */
+        .main-title {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInAndFade 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes slideInAndFade {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-text {
+            max-width: 600px;
+            padding-right: 2rem;
+        }
+        
+        .hero-image {
+            width: 45%;
+            position: relative;
+            max-width: 100%;
+            display: inline-block;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .rain-gauge-image img {
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .rain-gauge-image img:hover {
+            transform: translateY(-5px);
+        }
+        
+        .hero-image:before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            background: transparent;
+            border-radius: 8px;
+            z-index: 1;
+            box-shadow: none;
+            display: none; /* Hide the blueprint effect */
+        }
+        
+        /* Removed blueprint animation */
+        
+        @media (max-width: 768px) {
+            .floating-image {
+                width: 50%;
+                right: 10px;
+                bottom: -20px;
+                padding: 10px;
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin: 1.2rem 0;
+            line-height: 1.2;
+            font-weight: 800;
+            max-width: 800px;
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+            
+            .hero-text {
+                max-width: 100%;
+                padding-right: 0;
+                margin-bottom: 3rem;
+            }
+            
+            .hero-image {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero-content {
+                max-width: 100%;
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 30% 5%;
+                text-align: center;
+                background-attachment: scroll;
+                background-size: cover;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-content {
+                align-items: center;
+                text-align: center;
+            }
+            .cta-buttons {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+
+        .highlight {
+            color: #4fc3f7;
+            font-weight: 700;
+        }
+
+        .subheading {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffffff; /* Changed to white */
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+        
+        .subheading:hover {
+            opacity: 1;
+            color: #000;
+        }
+        
+        .subheading .fa-tint-container {
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .subheading:hover .fa-tint-container {
+            opacity: 1;
+            border-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .subheading .fa-tint-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+        }
+        
+        .subheading .fa-tint {
+            color: transparent;
+            -webkit-text-stroke: 1.5px #4a90e2;
+            text-shadow: none;
+            font-size: 1.2rem;
+            display: block;
+            animation: droplet 2s ease-in-out infinite, float 3s ease-in-out infinite;
+        }
+
+        .hero p {
+            margin: 1.2rem 0 2rem;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            line-height: 1.7;
+            color: #e0e0e0;
+            max-width: 700px;
+        }
+
+        /* --- Basic Button Styles --- */
+
+        /* Style for the container to hold buttons side-by-side */
+        .cta-buttons {
+            position: relative;
+            display: flex;
+            gap: 15px; /* Spacing between buttons */
+            margin-top: 30px;
+            align-items: center;
+        }
+
+        .btn {
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            /* Smooth transition for all properties (for the hover effect) */
+            transition: all 0.3s ease-in-out; 
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: none !important;
+        }
+
+        .btn-primary {
+            position: relative;
+            background: linear-gradient(180deg, #36b7f3, #2196f3);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            top: 0;
+            z-index: 3;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            top: -2px;
+        }        /* Style for the Dark/Secondary Button ("Get In Touch") */
+
+        .dark-rect {
+            position: absolute;
+            background: #000;
+            height: 55px;
+            width: 210px;
+            top: 10px;     /* tweak if needed */
+            left: 10px;   /* tweak if needed */
+            z-index: 1;
+            border-radius: 10px;
+        }
+
+        .btn-secondary {
+            background-color: rgba(0, 0, 0, 0.4); /* Dark background with slight transparency */
+            color: #fff; /* White text color */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+        }
+
+        /* Hover effect for the secondary button */
+        .btn-secondary:hover {
+            background-color: rgba(0, 0, 0, 0.7); /* Darker background on hover */
+            border-color: #fff; /* Solid white border on hover */
+        }
+
+
+
+        /* Rain Fact Box - Removed as per user request */
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes droplet {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .animate-droplet {
+            animation: droplet 2s ease-in-out infinite;
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background-color: #000;
+            color: white;
+            padding: 60px 0 20px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            width: 23%;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-section h3 i {
+            margin-right: 10px;
+            color: #4a90e2;
+            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.7);
+            text-shadow: none;
+            animation: droplet 2s ease-in-out infinite;
+        }
+
+        .footer-section h4 {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+        }
+
+        .footer-description {
+            color: #b0b0b0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+            line-height: 1.5;
+        }
+
+        .footer-section ul li a:hover {
+            color: #4a90e2;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: #333333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .social-icons a:hover {
+            background-color: #4a90e2;
+            transform: translateY(-2px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #b0b0b0;
+        }
+
+        .contact-item i {
+            color: #4a90e2;
+            margin-right: 12px;
+            margin-top: 2px;
+            font-size: 16px;
+            min-width: 16px;
+        }
+
+        .contact-item span {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333333;
+            padding: 25px 0 0;
+            margin-top: 40px;
+        }
+
+        .footer-bottom-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-bottom p {
+            color: #b0b0b0;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-bottom-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #4a90e2;
+        }
+
+        /* Modern Rain Gauge Section */
+        .modern-rain-gauge {
+            padding: 60px 0;
+            background-color: #fff;
+            margin: 0;
+            border: none;
+            position: relative;
+        }
+        
+        .rain-gauge-content {
+            padding: 0 30px;
+        }
+        
+        .rain-gauge-content h2 {
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .rain-gauge-desc {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        .rain-gauge-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+        }
+        
+        .rain-gauge-features li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .rain-gauge-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .rain-gauge-link {
+            display: inline-block;
+            color: #2196F3;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 3px;
+        }
+        
+        .rain-gauge-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #2196F3;
+            transition: width 0.3s ease;
+        }
+        
+        .rain-gauge-link:hover:after {
+            width: 0;
+        }
+        
+        .rain-gauge-image {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .rain-gauge-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 991.98px) {
+            .modern-rain-gauge {
+                padding: 40px 0;
+            }
+            
+            .rain-gauge-content {
+                padding: 0 15px;
+                margin-top: 30px;
+            }
+            
+            .rain-gauge-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Features Section */
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            background: #333 !important;
+        }
+        
+        .feature-card:hover .feature-icon i {
+            color: #e0e0e0 !important;
+        }
+        
+        /* Responsive Design */
+        /* Mobile Menu Button */
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+            margin-right: 20px;
+        }
+
+        .menu-btn:focus {
+            outline: none;
+        }
+
+        .menu-btn__line {
+            width: 100%;
+            height: 3px;
+            background: #000;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 786px) {
+            .menu-btn {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 80px;
+                gap: 1.5rem;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                width: 80%;
+                text-align: center;
+                padding: 0.8rem;
+                color: #333;
+                font-size: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subheading {
+                font-size: 1.2rem;
+            }
+            
+            .rain-fact {
+                position: relative;
+                margin-top: 2rem;
+                right: auto;
+                bottom: auto;
+                max-width: 100%;
+            }
+
+            /* Overlay when menu is open */
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 99;
+            }
+
+            .overlay.active {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress bar removed -->
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="homepage.html">
+                <div class="logo-icon">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <span>Rain<span class="logo-accent">Irrigation</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Facts & Methods</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Usage Tips</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Latest Developments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                </u class="main-title"l>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="line"></div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="subheading">
+                    <div class="fa-tint-container">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <span>Sustainable Water Solutions</span>
+                </div>
+                <h1>Harvest Rain, <span class="highlight">Nurture Life</span></h1>
+                <p>Discover innovative rainwater harvesting solutions that help conserve water and reduce your environmental impact. Our sustainable systems are designed for homes and businesses looking to make a positive change.</p>
+                <div class="cta-buttons">
+                    <a href="#solutions" class="btn btn-primary">Explore Solutions <i class="fas fa-arrow-right"></i></a>
+                    <div class="dark-rect"></div>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Rain Gauge Section -->
+    <section class="modern-rain-gauge">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="rain-gauge-content">
+                        <h2>The Ancient Practice Made Modern</h2>
+                        <p class="rain-gauge-desc">
+                            Rainwater harvesting is the collection and storage of rain for reuse before it reaches the aquifer. This centuries-old practice has been revolutionized with modern technology, making it more efficient and accessible than ever before.
+                        </p>
+                        <p class="rain-gauge-desc">
+                            From ancient civilizations in the Indus Valley to modern smart homes, humans have always recognized the value of capturing nature's gift. Today, with growing water scarcity concerns and rising utility costs, rainwater harvesting has become an essential component of sustainable living.
+                        </p>
+                        <ul class="rain-gauge-features">
+                            <li>Reduce water bills by up to 50%</li>
+                            <li>Eco-friendly and sustainable</li>
+                            <li>Low maintenance systems</li>
+                            <li>Government incentives available</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="rain-gauge-image">
+                        <img src="assets/modern method.png" alt="Modern Rain Gauge" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Rainwater Harvesting Section -->
+    <section class="features-section" style="padding: 80px 0; background-color: #f8f9fa;">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: #333; margin-bottom: 20px;">Why Choose Rainwater Harvesting?</h2>
+                <p style="font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                    Discover the numerous benefits of implementing rainwater harvesting systems for your home or business. From cost savings to environmental protection, the advantages are clear and compelling.
+                </p>
+            </div>
+            
+            <div class="row">
+                <!-- Feature 1: Water Conservation -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card text-center" style="padding: 30px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); height: 100%; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <div class="feature-icon mb-3" style="width: 80px; height: 80px; margin: 0 auto 20px; background: #e0e0e0; border: none; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-hand-holding-water" style="font-size: 2rem; color: #333;"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; font-weight: 600; color: #333; margin-bottom: 15px;">Water Conservation</h3>
+                        <p style="font-size: 0.95rem; color: #666; line-height: 1.6; margin-bottom: 0;">Reduce water bills and conserve precious natural resources through efficient rainwater collection.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 2: Eco-Friendly -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card text-center" style="padding: 30px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); height: 100%; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <div class="feature-icon mb-3" style="width: 80px; height: 80px; margin: 0 auto 20px; background: #e0e0e0; border: none; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-leaf" style="font-size: 2rem; color: #333;"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; font-weight: 600; color: #333; margin-bottom: 15px;">Eco-Friendly</h3>
+                        <p style="font-size: 0.95rem; color: #666; line-height: 1.6; margin-bottom: 0;">Contribute to environmental sustainability by reducing runoff and promoting groundwater recharge.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 3: High Quality Water -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card text-center" style="padding: 30px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); height: 100%; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <div class="feature-icon mb-3" style="width: 80px; height: 80px; margin: 0 auto 20px; background: #e0e0e0; border: none; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-tint" style="font-size: 2rem; color: #333;"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; font-weight: 600; color: #333; margin-bottom: 15px;">High Quality Water</h3>
+                        <p style="font-size: 0.95rem; color: #666; line-height: 1.6; margin-bottom: 0;">Rainwater is naturally soft and free of chemicals, perfect for gardens and various household uses.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 4: Versatile Solutions -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card text-center" style="padding: 30px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); height: 100%; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <div class="feature-icon mb-3" style="width: 80px; height: 80px; margin: 0 auto 20px; background: #e0e0e0; border: none; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-building" style="font-size: 2rem; color: #333;"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; font-weight: 600; color: #333; margin-bottom: 15px;">Versatile Solutions</h3>
+                        <p style="font-size: 0.95rem; color: #666; line-height: 1.6; margin-bottom: 0;">From small residential setups to large commercial systems, solutions for every need.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 5: Drought Protection -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card text-center" style="padding: 30px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); height: 100%; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <div class="feature-icon mb-3" style="width: 80px; height: 80px; margin: 0 auto 20px; background: #e0e0e0; border: none; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-shield-alt" style="font-size: 2rem; color: #333;"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; font-weight: 600; color: #333; margin-bottom: 15px;">Drought Protection</h3>
+                        <p style="font-size: 0.95rem; color: #666; line-height: 1.6; margin-bottom: 0;">Build resilience against water shortages and droughts with a reliable backup water supply.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 6: Cost Effective -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card text-center" style="padding: 30px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); height: 100%; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <div class="feature-icon mb-3" style="width: 80px; height: 80px; margin: 0 auto 20px; background: #e0e0e0; border: none; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-dollar-sign" style="font-size: 2rem; color: #333;"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; font-weight: 600; color: #333; margin-bottom: 15px;">Cost Effective</h3>
+                        <p style="font-size: 0.95rem; color: #666; line-height: 1.6; margin-bottom: 0;">Long-term savings on water bills with a system that pays for itself within a few years.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Comprehensive Benefits Section -->
+<section class="comprehensive-benefits py-5" style="background-color:#ffffff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p style="letter-spacing:3px;font-size:0.8rem;text-transform:uppercase;color:#999;margin-bottom:6px;">
+                BENEFITS
+            </p>
+            <h2 style="font-size:2.6rem;font-weight:700;color:#222;margin-bottom:12px;">
+                Comprehensive Benefits
+            </h2>
+            <p style="font-size:1rem;color:#666;max-width:640px;margin:0 auto;">
+                Discover the wide-ranging advantages of implementing a rainwater harvesting system.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <!-- Environmental Benefits -->
+            <div class="col-lg-4 col-md-6">
+                <div style="
+                    background:#ffffff;
+                    border-radius:18px;
+                    box-shadow:0 15px 40px rgba(0,0,0,0.06);
+                    padding:32px 30px;
+                    height:100%;
+                    border:1px solid #f0f0f0;">
+                    <h3 style="
+                        font-size:1.25rem;
+                        font-weight:600;
+                        margin-bottom:18px;
+                        color:#222;
+                        border-bottom:1px solid #e5e5e5;
+                        padding-bottom:10px;">
+                        Environmental Benefits
+                    </h3>
+                    <ul style="list-style:none;padding:0;margin:0;">
+                        <li style="display:flex;gap:10px;margin-bottom:10px;font-size:0.95rem;color:#555;">
+                            <span><i class="fas fa-check-circle" style="font-size:0.9rem;"></i></span>
+                            <span>Reduces stormwater runoff and erosion</span>
+                        </li>
+                        <li style="display:flex;gap:10px;margin-bottom:10px;font-size:0.95rem;color:#555;">
+                            <span><i class="fas fa-check-circle" style="font-size:0.9rem;"></i></span>
+                            <span>Decreases demand on municipal water supplies</span>
+                        </li>
+                        <li style="display:flex;gap:10px;margin-bottom:10px;font-size:0.95rem;color:#555;">
+                            <span><i class="fas fa-check-circle" style="font-size:0.9rem;"></i></span>
+                            <span>Helps recharge groundwater aquifers</span>
+                        </li>
+                        <li style="display:flex;gap:10px;font-size:0.95rem;color:#555;">
+                            <span><i class="fas fa-check-circle" style="font-size:0.9rem;"></i></span>
+                            <span>Reduces energy used for water treatment and distribution</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Economic Benefits -->
+            <div class="col-lg-4 col-md-6">
+                <div style="
+                    background:#ffffff;
+                    border-radius:18px;
+                    box-shadow:0 15px 40px rgba(0,0,0,0.06);
+                    padding:32px 30px;
+                    height:100%;
+                    border:1px solid #f0f0f0;">
+                    <h3 style="
+                        font-size:1.25rem;
+                        font-weight:600;
+                        margin-bottom:18px;
+                        color:#222;
+                        border-bottom:1px solid #e5e5e5;
+                        padding-bottom:10px;">
+                        Economic Benefits
+                    </h3>
+                    <ul style="list-style:none;padding:0;margin:0;">
+                        <li style="display:flex;gap:10px;margin-bottom:10px;font-size:0.95rem;color:#555;">
+                            <span><i class="fas fa-check-circle" style="font-size:0.9rem;"></i></span>
+                            <span>Lower monthly water bills</span>
+                        </li>
+                        <li style="display:flex;gap:10px;margin-bottom:10px;font-size:0.95rem;color:#555;">
+                            <span><i class="fas fa-check-circle" style="font-size:0.9rem;"></i></span>
+                            <span>Potential tax incentives and rebates</span>
+                        </li>
+                        <li style="display:flex;gap:10px;margin-bottom:10px;font-size:0.95rem;color:#555;">
+                            <span><i class="fas fa-check-circle" style="font-size:0.9rem;"></i></span>
+                            <span>Increases property value</span>
+                        </li>
+                        <li style="display:flex;gap:10px;font-size:0.95rem;color:#555;">
+                            <span><i class="fas fa-check-circle" style="font-size:0.9rem;"></i></span>
+                            <span>Reduces landscaping maintenance costs</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Practical Benefits -->
+            <div class="col-lg-4 col-md-6">
+                <div style="
+                    background:#ffffff;
+                    border-radius:18px;
+                    box-shadow:0 15px 40px rgba(0,0,0,0.06);
+                    padding:32px 30px;
+                    height:100%;
+                    border:1px solid #f0f0f0;">
+                    <h3 style="
+                        font-size:1.25rem;
+                        font-weight:600;
+                        margin-bottom:18px;
+                        color:#222;
+                        border-bottom:1px solid #e5e5e5;
+                        padding-bottom:10px;">
+                        Practical Benefits
+                    </h3>
+                    <ul style="list-style:none;padding:0;margin:0;">
+                        <li style="display:flex;gap:10px;margin-bottom:10px;font-size:0.95rem;color:#555;">
+                            <span><i class="fas fa-check-circle" style="font-size:0.9rem;"></i></span>
+                            <span>Provides backup water during shortages</span>
+                        </li>
+                        <li style="display:flex;gap:10px;margin-bottom:10px;font-size:0.95rem;color:#555;">
+                            <span><i class="fas fa-check-circle" style="font-size:0.9rem;"></i></span>
+                            <span>Better for plants than chlorinated water</span>
+                        </li>
+                        <li style="display:flex;gap:10px;margin-bottom:10px;font-size:0.95rem;color:#555;">
+                            <span><i class="fas fa-check-circle" style="font-size:0.9rem;"></i></span>
+                            <span>Reduces wear on water softeners</span>
+                        </li>
+                        <li style="display:flex;gap:10px;font-size:0.95rem;color:#555;">
+                            <span><i class="fas fa-check-circle" style="font-size:0.9rem;"></i></span>
+                            <span>Independent water source for emergencies</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar shadow on scroll
+        window.onscroll = function() {
+            const nav = document.querySelector('.navbar');
+            const hero = document.querySelector('.hero');
+            const heroBottom = hero ? hero.offsetTop + hero.offsetHeight : 0;
+
+            // basic shadow change
+            if (window.scrollY > 10) {
+                nav.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+
+            // show bottom bar after passing hero section
+            if (window.scrollY + nav.offsetHeight >= heroBottom) {
+                nav.classList.add('navbar-show-bar');
+            } else {
+                nav.classList.remove('navbar-show-bar');
+            }
+        };
+
+        // Add smooth scrolling to all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Close mobile menu if open
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {toggle: false});
+                        bsCollapse.hide();
+                    }
+                    
+                    // Smooth scroll to target
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect (background)
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(0, 0, 0, 0.95)';
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  const currentURL = window.location.href;
+
+  navLinks.forEach(link => {
+    if (currentURL.includes(link.getAttribute('href'))) {
+      link.classList.add('active');
+    }
+  });
+    </script>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Company Info Column -->
+            <div class="footer-section company-info">
+                <div class="footer-logo">
+                    <h3><i class="fas fa-tint"></i> RainIrrigation</h3>
+                </div>
+                <p class="footer-description">
+                    Your trusted partner for sustainable rainwater harvesting solutions. We provide innovative systems for residential and commercial water conservation needs.
+                </p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <!-- Quick Links Column -->
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="homepage.html">Home</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Facts & Methods</a></li>
+                    <li><a href="#">Usage Tips</a></li>
+                    <li><a href="#">Latest Developments</a></li>
+                </ul>
+            </div>
+            
+            <!-- Services Column -->
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Residential Systems</a></li>
+                    <li><a href="#">Commercial Solutions</a></li>
+                    <li><a href="#">Consultation</a></li>
+                    <li><a href="#">Installation</a></li>
+                    <li><a href="#">Maintenance</a></li>
+                    <li><a href="#">Training</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Column -->
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>123 Water Conservation Ave<br>Green City, EC 12345</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+1 (555) 123-4567</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@rainirrigation.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2024 RainIrrigation. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
